@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>データ受信ページ</title>
+</head>
+<body>
+    <h1>受信したデータを表示するページ</h1>
+    <div id="data-container"></div>
+
+    <script>
+        // URLのクエリパラメーターを取得する関数
+        function getQueryParams() {
+            const queryString = window.location.search;
+            const urlParams = new URLSearchParams(queryString);
+            return Object.fromEntries(urlParams.entries());
+        }
+
+        // ページ読み込み時にクエリパラメーターを取得して表示する
+        document.addEventListener('DOMContentLoaded', function() {
+            const queryParams = getQueryParams();
+            const dataContainer = document.getElementById('data-container');
+            if (queryParams.data) {
+                dataContainer.textContent = `受信したデータ: ${queryParams.data}`;
+            } else {
+                dataContainer.textContent = 'データがありません';
+            }
+        });
+    </script>
+</body>
+</html>
